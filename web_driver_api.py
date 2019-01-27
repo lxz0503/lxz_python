@@ -143,6 +143,55 @@ class WebTest(unittest.TestCase):
         select_element.deselect_by_index(3)
         select_element.deselect_by_value('juzi')
 
+    def test_operateMultipleOptionDropList(self):
+        url = "file:///D:/Pycharm/test_xiaozhan/lxz_python/data.html"
+        self.driver.get(url)
+        from selenium.webdriver.common.keys import Keys
+        self.driver.find_element_by_id('select').clear()
+        time.sleep(5)
+        self.driver.find_element_by_id('select').send_keys('c', Keys.ARROW_DOWN)
+        self.driver.find_element_by_id('select').send_keys(Keys.ARROW_DOWN)
+        self.driver.find_element_by_id('select').send_keys(Keys.ENTER)
+        time.sleep(5)
+
+    def test_operateRadio(self):
+        url = "file:///D:/Pycharm/test_xiaozhan/lxz_python/radio.html"
+        self.driver.get(url)
+        berryRadio = self.driver.find_element_by_xpath('//input[@value="berry"]')
+        berryRadio.click()
+        time.sleep(5)
+        self.assertTrue(berryRadio.is_selected(), u"草莓单选框未被选中")
+        if berryRadio.is_selected():
+            watermelonRadio = self.driver.find_element_by_xpath('//input[@value="watermelon"]')
+            watermelonRadio.click()
+            time.sleep(5)
+            self.assertFalse(berryRadio.is_selected())
+        radioList = self.driver.find_elements_by_xpath('//input[@name="fruit"]')
+        for radio in radioList:
+            if radio.get_attribute('value') == 'orange':
+                if not radio.is_selected():
+                    radio.click()
+                    time.sleep(5)
+                    self.assertEqual(radio.get_attribute('value'),'orange')
+
+    def test_operateCheckBox(self):
+        url = "file:///D:/Pycharm/test_xiaozhan/lxz_python/check_box.html"
+        self.driver.get(url)
+        berry_check_box = self.driver.find_element_by_xpath('//input[@value="berry"]')
+        berry_check_box.click()
+        time.sleep(5)
+        self.assertTrue(berry_check_box.is_selected(), u"草莓复选框未被选中")
+        if berry_check_box.is_selected():
+            berry_check_box.click()
+            time.sleep(5)
+            self.assertFalse(berry_check_box.is_selected())
+        check_box_list = self.driver.find_elements_by_xpath('//input[@name="fruit"]')
+        for box in check_box_list:
+            if not box.is_selected():
+                box.click()
+                time.sleep(5)
+
+
     def tearDown(self):
         self.driver.quit()
 
