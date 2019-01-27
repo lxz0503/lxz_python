@@ -9,6 +9,7 @@
 # 如果是图片可以使用find_element_by_css_selector('img[alt=\'button\']')
 
 #  使用xpath定位元素 #
+# 文本定位，一般对应着元素a，find_element_by_xpath('//a[text()="新闻"]') #
 # 单引号里面可以包含双引号 #
 # 斜杠 / slash #
 # 反斜杠 \ backslash #

@@ -50,7 +50,98 @@ class WebTest(unittest.TestCase):
     def test_getBasicInfo(self):
         url = "http://www.baidu.com"
         self.driver.get(url)
-        
+        ele = self.driver.find_element_by_xpath('//a[text()="新闻"]')
+        print("the tag name is %s" % ele.tag_name)
+        print("the size is %s" % ele.size)
+
+    def test_getWebElementText(self):
+        url = "http://www.baidu.com"
+        self.driver.get(url)
+        time.sleep(3)
+        ele = self.driver.find_element_by_xpath('//*[@class="mnav"][2]')
+        text = ele.text
+        print(text)
+
+    def test_getWebElementAttribute(self):
+        url = "http://www.sogou.com"
+        self.driver.get(url)
+        search_box = self.driver.find_element_by_xpath('//input[@id="query"]')
+        print("the name is %s" % search_box.get_attribute("name"))
+        search_box.send_keys("python")
+        time.sleep(5)
+        search_box.clear()
+        search_box.send_keys("python")
+        print("the content to search is %s" % search_box.get_attribute("value"))
+        search_button = self.driver.find_element_by_xpath('//input[@id="stb"]')
+        search_button.click()
+        time.sleep(5)
+        self.driver.back()
+
+    def test_clickButton(self):
+        url = "file:///D:/Pycharm/test_xiaozhan/lxz_python/click.html"
+        self.driver.get(url)
+        button = self.driver.find_element_by_id('button')
+        time.sleep(5)
+        button.click()
+        time.sleep(5)
+
+    def test_doubleClick(self):
+        url = "file:///D:/Pycharm/test_xiaozhan/lxz_python/double_click.html"
+        self.driver.get(url)
+        input_box = self.driver.find_element_by_id('inputBox')
+        from selenium.webdriver import ActionChains
+        action_chains = ActionChains(self.driver)
+        time.sleep(5)
+        action_chains.double_click(input_box).perform()
+        time.sleep(5)
+
+    def test_printSelectText(self):
+        url = "file:///D:/Pycharm/test_xiaozhan/lxz_python/single_selection_drop_list.html"
+        self.driver.get(url)
+        select = self.driver.find_element_by_name('fruit')
+        all_options = select.find_elements_by_tag_name('option')
+        for option in all_options:
+            print("the text is %s" % option.text)
+            print("the selected value is %s" % option.get_attribute('value'))
+            option.click()
+            time.sleep(5)
+
+    def test_operateDropList(self):
+        url = "file:///D:/Pycharm/test_xiaozhan/lxz_python/single_selection_drop_list.html"
+        self.driver.get(url)
+        from selenium.webdriver.support.ui import Select
+        select_element = Select(self.driver.find_element_by_xpath('//select'))
+        print("the default selection is %s" % select_element.first_selected_option.text)
+        time.sleep(5)
+        all_options = select_element.options
+        print("the length of options is %s" % len(all_options))
+        select_element.select_by_value("shanzha")
+        print("the selected element is %s" % select_element.all_selected_options[0].text)
+        self.assertEqual(select_element.all_selected_options[0].text,u"山楂")
+        time.sleep(5)
+
+    def test_operateMultipleOptionDropList(self):
+        url = "file:///D:/Pycharm/test_xiaozhan/lxz_python/multiple_drop_list.html"
+        self.driver.get(url)
+        from selenium.webdriver.support.ui import Select
+        select_element = Select(self.driver.find_element_by_xpath('//select'))
+        select_element.select_by_index(0)
+        select_element.select_by_visible_text('山楂')
+        select_element.select_by_value('mihoutao')
+        for option in select_element.all_selected_options:
+            print("the selected option is %s" % option.text)
+        select_element.deselect_all()
+        time.sleep(5)
+        print("------再次选中3个-------")
+        select_element.select_by_index(3)
+        select_element.select_by_visible_text('西瓜')
+        select_element.select_by_value('juzi')
+        for option in select_element.all_selected_options:
+            print("the selected option is %s" % option.text)
+        time.sleep(5)
+        select_element.deselect_by_visible_text('西瓜')
+        select_element.deselect_by_index(3)
+        select_element.deselect_by_value('juzi')
 
     def tearDown(self):
         self.driver.quit()
