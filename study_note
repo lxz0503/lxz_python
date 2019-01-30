@@ -21,5 +21,21 @@
 # indent--动词 缩进, indentation should be four white spaces #
 # 打开本地html文件路径格式 file:///D:/Pycharm/test_xiaozhan/test.html #
 # 通过命令行来执行某个case,进入到脚本所在目录，  python -m unittest web_driver_api.WebTest.test_visitURL #
+# 鼠标事件 #
+# context_click----鼠标右击事件 #
+# double_click 鼠标双击事件 #
+# drag_and_drop 拖动鼠标 #
+# move_to_element（ele).perform() 鼠标悬停在某个元素上#
+# click_and_hold 按下鼠标左键在一个元素上 #
+# 键盘事件 send_keys() #
+# from selenium.webdriver.common.keys import Keys #
+# send_keys(Keys.BACK_SPACE) 退格键 #
+# send_keys(Keys.CONTROL, 'a') --全选拷贝 #
+# send_keys(Keys.CONTROL, 'x')---剪切 #
+# send_keys(Keys.CONTROL, 'v') ---粘贴 #
 
+# 对话框处理与登录，自己写登录邮箱的代码 #
+# 多窗口切换，打开百度首页，搜索麦子学院，跳转到麦子许愿首页，也就是窗口句柄切换 #
+# d.window_handles 返回的是一个列表 #
+# d.switch_to_window(d.window_handles[1])#
 
