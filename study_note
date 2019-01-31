@@ -39,3 +39,20 @@
 # d.window_handles 返回的是一个列表 #
 # d.switch_to_window(d.window_handles[1])#
 
+# 脚本等待方法 #
+# time.sleep(5),  driver.implicitly_wait(5), #
+# from selenium.webdriver.support.ui import WebDriverWait #
+
+# class WebDriverWait(builtins.object)
+ |  Methods defined here:
+ |  
+ |  __init__(self, driver, timeout, poll_frequency=0.5, ignored_exceptions=None)#
+# WebDriverWait: poll_frequency->check->until->method return not false #
+# until not--return value is False #
+
+# 处理alert对护框 #
+# switch_to_alert(),切到alert.#
+# accept,dismiss--消失, send_keys()--有输入框才能使用，否则报错 #
+
+# 模块化设计用例： openBrowser, loadUrl, findElement, sendVals, checkResults #
+
