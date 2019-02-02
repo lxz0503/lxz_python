@@ -1,4 +1,5 @@
 #this is a test to log in http://www.maiziedu.com
+#with independent data stored in dictionary
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 
@@ -38,6 +39,7 @@ def findElement(d, arg):
 
 def sendVals(ele_tuple, arg):
     #this is to input username and password
+    #arg is a dictionary
     list_key = ['username', 'pwd']
     i = 0
     for key in list_key:
@@ -58,29 +60,35 @@ def checkResult(d, path):
         print("right")
 
 
-def loginTest(ele_dict):
+def loginTest(ele_dict, user_list):
     d = openBrowser()
     openUrl(d, ele_dict['url'])
     #找到各个登录用的元素
     ele_tuple = findElement(d, ele_dict)
     #找到元素后，分别点击或者输入内容
-    sendVals(ele_tuple, ele_dict)
+    for arg in user_list:
+        #arg is a dictionary---every user/pwd
+        sendVals(ele_tuple, arg)
     #检查结果，根据xpath匹配到错误的账号或者密码
-    checkResult(d, ele_dict['error_id'])  #//*[@id="login-form-tips"]
+        checkResult(d, ele_dict['error_id'])  #//*[@id="login-form-tips"]
 
 
 if __name__ == '__main__':
     url = 'http://www.maiziedu.com/'
     login_text = '登录'
-    username = 'maizi_test@139.com'
-    pwd = 'abc123456'
+    username1 = 'maizi_test@139.com'
+    pwd1 = 'abc123456'
+    username2 = 'maizi_test@139.com'
+    pwd2 = 'abc123456'
     # text_id----登录元素
     # user_id/pwd_id/login_id----输入账号元素
     # uname/pwd----输入账号信息
     # error_id----检查错误条件
     ele_dict = {'url': url, 'text_id': login_text, 'user_id': 'id_account_l', 'pwd_id': '//*[@id="id_password_l"]',
-                'login_id': 'login_btn', 'username': username, 'pwd': pwd, 'error_id': '//*[@id="login-form-tips"]'}
-    loginTest(ele_dict)
+                'login_id': 'login_btn', 'error_id': '//*[@id="login-form-tips"]'}
+    #user information should be independent,because there are many users
+    user_list = [{'username': username1, 'pwd': pwd1}, {'username': username2, 'pwd': pwd2}]  #every user/pwd is a dictionary
+    loginTest(ele_dict, user_list)
 
 
 
