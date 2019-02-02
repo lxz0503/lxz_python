@@ -9,6 +9,7 @@ pwd = 'abc123456'
 
 
 def getEleTimes(driver, times, func):
+    #设置了页面等待时间，用来找到耗时比较长的页面元素
     return WebDriverWait(driver, times).until(func)
 
 
@@ -25,13 +26,14 @@ def openUrl(handle,url):
 
 def findElement(d, arg):
     #this is to find username, password and login button
+    #耗时比较长，默认60秒后超时，查找'登录'这个元素耗时比较长
     if 'text_id' in arg:
         ele_login = getEleTimes(d, 60, lambda d: d.find_element_by_link_text(arg['text_id']))
         ele_login.click()
-    user_ele = d.find_element_by_id(arg['user_id'])  #//*[@id="id_account_l"]
-    pwd_ele = d.find_element_by_xpath(arg['pwd_id'])  #//*[@id="id_password_l"]
-    login_ele = d.find_element_by_id(arg['login_id'])
-    return user_ele, pwd_ele, login_ele
+    user_ele = d.find_element_by_id(arg['user_id'])  #//*[@id="id_account_l"]，找到对应用户名的那个元素
+    pwd_ele = d.find_element_by_xpath(arg['pwd_id'])  #//*[@id="id_password_l"]，找到对应密码的那个元素
+    login_ele = d.find_element_by_id(arg['login_id'])  #找到对应登录按钮的那个元素
+    return user_ele, pwd_ele, login_ele   #返回三个元素，组成一个三元祖
 
 
 def sendVals(ele_tuple, arg):
@@ -41,9 +43,10 @@ def sendVals(ele_tuple, arg):
     for key in list_key:
         ele_tuple[i].send_keys('')
         ele_tuple[i].clear()
+        #分别对应用户名和密码那个元素，然后输入内容
         ele_tuple[i].send_keys(arg[key])
         i += 1
-    #this is for login button
+    #this is to click login button
     ele_tuple[2].click()
 
 
@@ -58,11 +61,15 @@ def checkResult(d, text):
 def loginTest():
     d = openBrowser()
     openUrl(d, url)
+    #下面的字典包含了首页的登陆，邮箱页的用户名，密码
     ele_dict = {'text_id': login_text, 'user_id': 'id_account_l', 'pwd_id': '//*[@id="id_password_l"]','login_id': 'login_btn'}
+    #下面的字典用来保存登录用的用户名和密码
     account_dict = {'username': username, 'pwd': pwd}
+    #找到各个登录用的元素
     ele_tuple = findElement(d, ele_dict)
+    #找到元素后，分别点击或者输入内容
     sendVals(ele_tuple, account_dict)
-    #根据xpath匹配到错误的账号或者密码
+    #检查结果，根据xpath匹配到错误的账号或者密码
     checkResult(d, '//*[@id="login-form-tips"]')
 
 
