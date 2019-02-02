@@ -1,4 +1,4 @@
-#this is a test to log in 163 mail box
+#this is a test to log in http://www.maiziedu.com
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 
@@ -19,7 +19,7 @@ def openBrowser():
     return webdriver_handle
 
 
-def openUrl(handle,url):
+def openUrl(handle, url):
     handle.get(url)
     handle.maximize_window()
 
@@ -50,31 +50,37 @@ def sendVals(ele_tuple, arg):
     ele_tuple[2].click()
 
 
-def checkResult(d, text):
+def checkResult(d, path):
     try:
-        d.find_element_by_xpath(text)  #//*[@id="login-form-tips"]
+        d.find_element_by_xpath(path)  #//*[@id="login-form-tips"]
         print("账号或者密码错误，请重新输入")
     except:
         print("right")
 
 
-def loginTest():
+def loginTest(ele_dict):
     d = openBrowser()
-    openUrl(d, url)
-    #下面的字典包含了首页的登陆，邮箱页的用户名，密码
-    ele_dict = {'text_id': login_text, 'user_id': 'id_account_l', 'pwd_id': '//*[@id="id_password_l"]','login_id': 'login_btn'}
-    #下面的字典用来保存登录用的用户名和密码
-    account_dict = {'username': username, 'pwd': pwd}
+    openUrl(d, ele_dict['url'])
     #找到各个登录用的元素
     ele_tuple = findElement(d, ele_dict)
     #找到元素后，分别点击或者输入内容
-    sendVals(ele_tuple, account_dict)
+    sendVals(ele_tuple, ele_dict)
     #检查结果，根据xpath匹配到错误的账号或者密码
-    checkResult(d, '//*[@id="login-form-tips"]')
+    checkResult(d, ele_dict['error_id'])  #//*[@id="login-form-tips"]
 
 
 if __name__ == '__main__':
-    loginTest()
+    url = 'http://www.maiziedu.com/'
+    login_text = '登录'
+    username = 'maizi_test@139.com'
+    pwd = 'abc123456'
+    # text_id----登录元素
+    # user_id/pwd_id/login_id----输入账号元素
+    # uname/pwd----输入账号信息
+    # error_id----检查错误条件
+    ele_dict = {'url': url, 'text_id': login_text, 'user_id': 'id_account_l', 'pwd_id': '//*[@id="id_password_l"]',
+                'login_id': 'login_btn', 'username': username, 'pwd': pwd, 'error_id': '//*[@id="login-form-tips"]'}
+    loginTest(ele_dict)
 
 
 
