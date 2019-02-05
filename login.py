@@ -3,15 +3,10 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 
-url = 'http://www.maiziedu.com/'
-login_text = '登录'
-username = 'maizi_test@139.com'
-pwd = 'abc123456'
 
-
-def getEleTimes(driver, times, func):
+def getEleTime(driver, time, func):
     #设置了页面等待时间，用来找到耗时比较长的页面元素
-    return WebDriverWait(driver, times).until(func)
+    return WebDriverWait(driver, time).until(func)
 
 
 def openBrowser():
@@ -29,7 +24,7 @@ def findElement(d, arg):
     #this is to find username, password and login button
     #耗时比较长，默认60秒后超时，查找'登录'这个元素耗时比较长
     if 'text_id' in arg:
-        ele_login = getEleTimes(d, 60, lambda d: d.find_element_by_link_text(arg['text_id']))
+        ele_login = getEleTime(d, 60, lambda d: d.find_element_by_link_text(arg['text_id']))
         ele_login.click()
     user_ele = d.find_element_by_id(arg['user_id'])  #//*[@id="id_account_l"]，找到对应用户名的那个元素
     pwd_ele = d.find_element_by_xpath(arg['pwd_id'])  #//*[@id="id_password_l"]，找到对应密码的那个元素
@@ -76,10 +71,9 @@ def loginTest(ele_dict, user_list):
 if __name__ == '__main__':
     url = 'http://www.maiziedu.com/'
     login_text = '登录'
-    username1 = 'maizi_test@139.com'
-    pwd1 = 'abc123456'
-    username2 = 'maizi_test@139.com'
-    pwd2 = 'abc123456'
+    username = 'maizi_test@139.com'
+    pwd = 'abc123456'
+
     # text_id----登录元素
     # user_id/pwd_id/login_id----输入账号元素
     # uname/pwd----输入账号信息
@@ -87,7 +81,7 @@ if __name__ == '__main__':
     ele_dict = {'url': url, 'text_id': login_text, 'user_id': 'id_account_l', 'pwd_id': '//*[@id="id_password_l"]',
                 'login_id': 'login_btn', 'error_id': '//*[@id="login-form-tips"]'}
     #user information should be independent,because there are many users
-    user_list = [{'username': username1, 'pwd': pwd1}, {'username': username2, 'pwd': pwd2}]  #every user/pwd is a dictionary
+    user_list = [{'username': username, 'pwd': pwd}]  #every user/pwd is a dictionary
     loginTest(ele_dict, user_list)
 
 
