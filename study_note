@@ -62,6 +62,10 @@
 # e = dict({'three': 3, 'one': 1, 'two': 2}) #
 # a == b == c == d == e #
 # True #
-# find_elements....pop(0).click()#
+# find_elements....pop(0).click() #
+
+# 单元测试框架unittest,如果测试用例放在多个子目录，需要在每个子目录下创建一个空的__init__.py，表示这是标准python包 #
+# 用unittest 跑多个case，可以用discover方法来找到所有的case #
+# 如果想跳过某个case，可以在case前面加一个装饰器，即decorator, @unittest.skip() #
 
 
