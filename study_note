@@ -68,4 +68,44 @@
 # 用unittest 跑多个case，可以用discover方法来找到所有的case #
 # 如果想跳过某个case，可以在case前面加一个装饰器，即decorator, @unittest.skip() #
 
+# generator #
+# g = (x * x for x in range(10)),g就是一个生成器 #
+# g = [x * x for x in range(10)]， g是一个列表 #
+# list、tuple、dict、set、str，generator 这些可以直接作用于for循环的对象统称为可迭代对象：Iterable #
 
+# 迭代器 #
+
+# 把list、dict、str等Iterable变成Iterator可以使用iter()函数，然后就可以用next（）方法 #
+# isinstance('abc', Iterable),判断str是否可迭代 #
+# isinstance([1,2,3], Iterable)，判断list是否可迭代 #
+# 如果要对list实现类似Java那样的下标循环怎么办？Python内置的enumerate函数可以把一个list变成索引-元素对，这样就可以在for循环中同时迭代索引和元素本身 #
+# for i, value in enumerate(['A', 'B', 'C']): #
+#      print(i, value) #
+
+# 字典的迭代 #
+# 默认情况下，dict迭代的是key。如果要迭代value，可以用for value in d.values()，如果要同时迭代key和value，可以用for k, v in d.items() #
+
+# 切片 #
+# 对这种经常取指定索引范围的操作，用循环十分繁琐，因此，Python提供了切片（Slice）操作符 #
+# L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3。即索引0，1，2，正好是3个元素 #
+# Python支持L[-1]取倒数第一个元素，那么它同样支持倒数切片 #
+# 前10个数 L[:10],后10个数 L[-10:] #
+
+# 函数调用 #
+# 实际上pass可以用来作为占位符，比如现在还没想好怎么写函数的代码，就可以先放一个pass，让代码能运行起来 #
+# 函数可以同时返回多个值，但其实就是一个tuple #
+# 必选参数外，还可以使用默认参数、可变参数和关键字参数 #
+# 一是必选参数在前，默认参数在后 #
+# def enroll(name, gender, age=6, city='Beijing')，默认参数要用key=value的使用 #
+# 我们把函数的参数改为可变参数， def calc(*numbers): 可变参数和定义一个list或tuple参数相比，仅仅在参数前面加了一个*号 #
+# nums = [1, 2, 3]， calc(*nums)，*nums表示把nums这个list的所有元素作为可变参数传进去。这种写法相当有用，而且很常见 #
+# 可变参数允许你传入0个或任意个参数，这些可变参数在函数调用时自动组装为一个tuple #
+
+
+# 关于不可变对象和可变对象 #
+# 可变对象有列表和字典，不可变对象有数字，字符串，元组 #
+# 简单来说，可变对象分配的是不同的内存地址，如果改变不可变对象，相当于新分配一块内存 #
+# 先说明一点is 就是判断两个对象的id是否相同， 而 == 判断的则是内容是否相同 #
+# 为什么要设计str、None这样的不变对象呢？因为不变对象一旦创建，对象内部的数据就不能修改，这样就减少了由于修改数据导致的错误。#
+# 此外，由于对象不变，多任务环境下同时读取对象不需要加锁，同时读一点问题都没有。#
+# 我们在编写程序时，如果可以设计一个不变对象，那就尽量设计成不变对象 #
