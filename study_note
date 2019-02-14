@@ -14,10 +14,10 @@
 ##  find_element_by_css_selector('input[type=\'button\']') ##
 # 如果是图片可以使用find_element_by_css_selector('img[alt=\'button\']')
 
-#  使用xpath定位元素--推荐使用xpath#
+#  使用xpath定位元素--推荐使用xpath #
 # 文本定位，一般对应着元素a，find_element_by_xpath('//a[text()="新闻"]') #
 # 单引号里面可以包含双引号 #
-# 斜杠 / slash #
+# 斜杠 / slash， dash - 破折号#
 # 反斜杠 \ backslash #
 # 下划线  _ underline #
 # 冒号 ： colon  ['kəʊlən] #
@@ -74,7 +74,7 @@
 # 用unittest 跑多个case，可以用discover方法来找到所有的case #
 # 如果想跳过某个case，可以在case前面加一个装饰器，即decorator, @unittest.skip() #
 
-# generator #
+# generator 生成器 #
 # g = (x * x for x in range(10)),g就是一个生成器 #
 # g = [x * x for x in range(10)]， g是一个列表 #
 # list、tuple、dict、set、str，generator 这些可以直接作用于for循环的对象统称为可迭代对象：Iterable #
@@ -92,6 +92,7 @@
 # 默认情况下，dict迭代的是key。如果要迭代value，可以用for value in d.values()，如果要同时迭代key和value，可以用for k, v in d.items() #
 
 # 切片 #
+
 # 对这种经常取指定索引范围的操作，用循环十分繁琐，因此，Python提供了切片（Slice）操作符 #
 # L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3。即索引0，1，2，正好是3个元素 #
 # Python支持L[-1]取倒数第一个元素，那么它同样支持倒数切片 #
@@ -116,8 +117,6 @@
 # map()函数接收两个参数，一个是函数，一个是Iterable，map将传入的函数依次作用到序列的每个元素，并把结果作为新的Iterator返回 #
 # list(map(str, [1, 2, 3, 4, 5, 6, 7, 8, 9]))，把这个list所有数字转为字符串 #
 
-
-
 # 关于不可变对象和可变对象 #
 # 可变对象有列表和字典，不可变对象有数字，字符串，元组 #
 # 简单来说，可变对象分配的是不同的内存地址，如果改变不可变对象，相当于新分配一块内存 #
@@ -135,7 +134,37 @@
         # self.keyFile = keyFile #
        # self.natServer = '128.224.179.25' #
        # super(SSHTiS, self).__init__(hostName, user) 继承父类的两个属性hostName 和user #
-       
+
+# 类名使用驼峰(CamelCase)命名风格，首字母大写，私有类可用一个下划线开头,class AnimalFarm(Farm): #
+# 函数名一律小写，如有多个单词，用下划线隔开 def run_with_env() #
+# 变量名尽量小写, 如有多个单词，用下划线隔开 #
+# 常量采用全大写，如有多个单词，使用下划线隔开 MAX_CLIENT = 100 #
+# 模块尽量使用小写命名，首字母保持小写，尽量不要用下划线(除非多个单词，且数量不多的情况) #
+# 导入模块，尽量用绝对路径 from foo.bar import Bar #
+# 不推荐的写法 from ..bar import Bar #
+
+# 异常处理 #
+
+# Python所有的错误都是从BaseException类派生的，常见的错误类型和继承关系看这里 https://docs.python.org/3/library/exceptions.html#exception-hierarchy #
+# 如果不知道具体异常是啥，就用下面这种方式 #
+# except Exception as e: #
+#        print('Error:', e) 或者 logging.exception(e)#
+# Python内置的logging模块可以非常容易地记录错误信息#
+
+# 调用栈 #
+
+# 如果错误没有被捕获，它就会一直往上抛，最后被Python解释器捕获，打印一个错误信息，然后程序退出 #
+# 解读错误信息是定位错误的关键。我们从上往下可以看到整个错误的调用函数链 #
+
+# 调试程序 #
+
+# 第一种方法简单直接粗暴有效，就是用print()把可能有问题的变量打印出来看看 #
+# 第二种 凡是用print()来辅助查看的地方，都可以用断言（assert）来替代 #
+# assert n != 0, 'n is zero!' ，assert的意思是，表达式n != 0应该是True #
+# 如果断言失败，assert语句本身就会抛出AssertionError，即AssertionError: n is zero! #
+# python -O err.py 可以关闭assert，当成pass #
+# 第三种 把print()替换为logging，和assert比，logging不会抛出错误，而且可以输出到文件 #
+
 # PageObject设计模式,在selenium自动化测试中的运用 #
 # 1. Web自动化测试框架（WebTestFramework）是基于Selenium框架且采用PageObject设计模式进行二次开发形成的框架。 #
 # 2. web测试时,建议强烈推荐使用_谷歌或_火狐浏览器。#
