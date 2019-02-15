@@ -24,5 +24,9 @@ class Page(object):
     def find_element(self, *loc):
         return self.driver.find_element(*loc)
 
+    def script(self, src):
+        return self.driver.execute_script(src)
+
+
 
 
