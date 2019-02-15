@@ -1,6 +1,7 @@
 from selenium import webdriver
 import unittest
 import time
+import HTMLTestRunner
 
 
 class WebTest(unittest.TestCase):
@@ -16,7 +17,7 @@ class WebTest(unittest.TestCase):
 
     def test_visitRecentURL(self):
         first_url = "http://www.sogou.com"
-        second_url = "http://www.baidu.com"
+        second_url = "https://www.baidu.com"   #this url should be https:// at office while http://at home
         self.driver.get(first_url)
         self.driver.get(second_url)
         self.driver.back()
@@ -37,7 +38,7 @@ class WebTest(unittest.TestCase):
         self.driver.minimize_window()
 
     def test_operateWindowHandle(self):
-        url = "http://www.baidu.com"
+        url = "https://www.baidu.com"
         self.driver.get(url)
         now_handle = self.driver.current_window_handle
         print(now_handle)
@@ -48,14 +49,14 @@ class WebTest(unittest.TestCase):
         time.sleep(5)
 
     def test_getBasicInfo(self):
-        url = "http://www.baidu.com"
+        url = "https://www.baidu.com"
         self.driver.get(url)
         ele = self.driver.find_element_by_xpath('//a[text()="新闻"]')
         print("the tag name is %s" % ele.tag_name)
         print("the size is %s" % ele.size)
 
     def test_getWebElementText(self):
-        url = "http://www.baidu.com"
+        url = "https://www.baidu.com"
         self.driver.get(url)
         time.sleep(3)
         ele = self.driver.find_element_by_xpath('//*[@class="mnav"][2]')
@@ -175,7 +176,7 @@ class WebTest(unittest.TestCase):
                     self.assertEqual(radio.get_attribute('value'),'orange')
 
     def test_operateCheckBox(self):
-        url = "file:///D:/Pycharm/test_xiaozhan/lxz_python/check_box.html"
+        url = "file:///F:/Pycharm/Selenium_Xiaozhan/lxz_python/check_box.html"
         self.driver.get(url)
         berry_check_box = self.driver.find_element_by_xpath('//input[@value="berry"]')
         berry_check_box.click()
@@ -191,10 +192,15 @@ class WebTest(unittest.TestCase):
                 box.click()
                 time.sleep(5)
 
-
     def tearDown(self):
         self.driver.quit()
 
 
 if __name__ == '__main__':
-    unittest.main()
+    #unittest.main()
+    suite = unittest.TestSuite()
+    suite.addTest(WebTest('test_operateCheckBox'))
+    file_name = "F:\\Pycharm\\Selenium_Xiaozhan\\report.html"
+    with open(file_name, 'wb') as fp:
+        runner = HTMLTestRunner.HTMLTestRunner(stream=fp,title='report',description='web api test')
+        runner.run(suite)

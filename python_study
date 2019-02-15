@@ -2,6 +2,10 @@ Python上手很容易, 基本有其他语言编程经验的人可以在1周内�
 
 C:\Users\Administrator\AppData\Local\Programs\Python\Python36-32\Scripts
 
+study site:
+https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000
+
+
 
 它们包括:
 
@@ -13,7 +17,7 @@ C:\Users\Administrator\AppData\Local\Programs\Python\Python36-32\Scripts
 
 你再花1周学习些:
 
-1.类
+1.类---------------多学习class，继承，私有，public
 
 2.异常
 
@@ -27,9 +31,9 @@ C:\Users\Administrator\AppData\Local\Programs\Python\Python36-32\Scripts
 
 2.不了解可变对象和不可变对象, 尤其是int.
 
-3.不了解切片意味着拷贝, 在循环中大量使用, 影响效率.
+3.不了解切片意味着拷贝, 在循环中大量使用, 影响效率.-----在循环中不使用切片，提前切片
 
-4.不了解切片是浅拷贝还是深拷贝.
+4.不了解切片是浅拷贝还是深拷贝.-----------不理解浅拷贝和深拷贝，实际没用过
 
 5.遇到bytes和str(2.7中的str和unicode)就头晕.
 
@@ -59,11 +63,11 @@ C:\Users\Administrator\AppData\Local\Programs\Python\Python36-32\Scripts
 
 你只能快跑, 进一步学习, Python语言层面还需要学习下面一些内容:
 
-1.使用生成器, 迭代器
+1.使用生成器, 迭代器-----------------了解，next(),iter()
 
 2.函数式编程, 匿名函数lambda, map, reduce, filter
 
-3.列表解析, 字典解析, 集合解析, 生成器解析
+3.列表解析, 字典解析, 集合解析, 生成器解析------熟练掌握
 
 4.运算符重载(__setattr__, __getattr__, __getitem__, __gt__, __lt__...)
 
@@ -71,16 +75,16 @@ C:\Users\Administrator\AppData\Local\Programs\Python\Python36-32\Scripts
 
 6.上下文管理器(__enter__, __exit__)
 
-7.深入理解面向对象
+7.深入理解面向对象----------------尽量多写class，用继承，保持扩展性
 
 
 
 
 上述都是语言层面的,属于内功.实战中当然也需要一些更为具体的外功, 训练外功可以从熟悉Python标准库开始, 这些模块能进入标准库说明他们足够好并且在实际项目中足够常用, 列举一些极为常用的:
 
-1.正则表达式 re
+1.正则表达式 re-----------经常用
 
-2.迭代工具 itertools
+2.迭代工具 itertools---用的很少
 
 3.常用数据结构 collections, heapq, array
 
@@ -88,24 +92,24 @@ C:\Users\Administrator\AppData\Local\Programs\Python\Python36-32\Scripts
 
 5.随机 random
 
-6.系统调用 os
+6.系统调用 os----经常用来执行命令
 
-7.Python对象序列化 pickle
+7.Python对象序列化 pickle-------可以用数据库替代
 
-8.多进程多线程处理 threading, multiprocessing
+8.多进程多线程处理 threading, multiprocessing---实际应用很少
 
-9.网络 socket, urllib
+9.网络 socket, urllib---实际应用不到
 
-10.系统参数 sys
+10.系统参数 sys----偶尔用到
 
 
 
 
 无论练习内功或外功,结合实战都是最好的训练方式和检验手段, 可以根据个人情况以及喜好选择, 如:
 
-1.使用django, flask开发网站.
+1.使用django, flask开发网站.----感兴趣，实际没有应用
 
-2.开发网络爬虫或使用Python爬虫框架(如scrapy).
+2.开发网络爬虫或使用Python爬虫框架(如scrapy).--感兴趣
 
 3.写一些自动化运维脚本, 定时读取某软件log, 出现异常自动发邮件.-----------------------????
 
