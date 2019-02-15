@@ -1,0 +1,23 @@
+# git init #
+# git clone https://github.com/lxz0503/lxz_python.git #
+# how to update remote repository #
+# git pull #
+# git add aaa.txt #
+# git commit -m "update" #
+# git push #
+
+# only update one specific file #
+# git checkout aaaa #
+
+# how to remove directory or file from remote repository #
+# git rm -rf --cached  __pycache__ #
+# git commit -m "remove directory" #
+# git push #
+
+# a specific commit #
+# git log #
+# git status #
+# git reset --hard aaaaaa #
+
+# git stash #
+# git pop #
