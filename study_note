@@ -172,3 +172,22 @@
 # 4. 目的: 测试代码与被测页面对象代码分离，后期如果有页面元素发生了更改,只需要修改相应页面对象的代码(即对应Class文件),而不需要修改测试代码 #
 # 5. 尽量采用xpath方式来寻找页面元素,而不建议使用name,Link等方法; xpath是基于页面元素所处区域,一般不会发生变化,测试代码基本不受干扰. #
 # 6. 将页面元素属性信息与代码分离，即与被测对象代码分离，目的也是为了进一步降低后续因页面变化带来的维护成本 #
+
+# python2.7.14  and python3.6.5 coexist on windows #
+# first, install python3, set env path like D:\Python;D:\Python\Scripts; #
+# install python2,set env path like D:\Python27;D:\Python27\Scripts; #
+# 修改python27安装目录下的Python.exe和pythonw.exe名字为 python2.exe和pythonw2.exe #
+# 修改python3安装目录下的Python.exe和pythonw.exe名字为 python3.exe和pythonw3.exe #
+
+# 接下来 让pip能共存#
+# 在dos里面执行 python3 -m pip install --upgrade pip --force-reinstall #
+# 在dos里面执行 python2 -m pip install --upgrade pip --force-reinstall #
+# 查询是否成功 pip2 -V, pip3 -V #
+# 以后需要安装第三方包，命令如下 pip2 install lettuce ,pip3 install lettuce #
+
+# Python框架下的 BDD 只能用在python2.7版本，  但是据说在Python3.5中 可以用BDD，还没有试验 #
+
+# pip2 install lettuce,pip2 install lettuce_webdriver, pip2 install nose #
+# import lettuce即可 #
+# debug后才能执行 D:\Python27\Scripts，修改下面的 lettuce_webdriver_script.py 为lettuce-script.py, #
+# 只能在dos命令执行，没有结果，还需要调试 #
