@@ -185,9 +185,8 @@
 # 查询是否成功 pip2 -V, pip3 -V #
 # 以后需要安装第三方包，命令如下 pip2 install lettuce ,pip3 install lettuce #
 
-# Python框架下的 BDD 只能用在python2.7版本，  但是据说在Python3.5中 可以用BDD，还没有试验 #
+# Python框架下的 BDD 只能用在python2.7版本，  但是据说在Python3.5中 可以用BDD #
 
 # pip2 install lettuce,pip2 install lettuce_webdriver, pip2 install nose #
-# import lettuce即可 #
-# debug后才能执行 D:\Python27\Scripts，修改下面的 lettuce_webdriver_script.py 为lettuce-script.py, #
-# 只能在dos命令执行，没有结果，还需要调试 #
+# 没有修改Pycharm的python解释器为Python3，能执行成功， 如果修改为python2.exe也能执行成功 #
+# 总之目前家里的环境安装了python2和python3,然后能运行 lettuce 测试#
