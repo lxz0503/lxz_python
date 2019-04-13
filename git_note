@@ -21,3 +21,21 @@
 
 # git stash #
 # git pop #
+
+----------------------------
+
+log onto my github website:https://github.com/lxz0503
+ and create new repository:study_python
+ then add file into this repository
+ below is git command in your git bash window:
+
+ cd your local repository: cd /d/Pycharm/01_Python基础
+
+echo "# study_python" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/lxz0503/study_python.git
+git push -u origin master
+#how to use git with pycharm
+
